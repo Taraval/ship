@@ -20,9 +20,12 @@ RUN apt-get update && \
 	cd /repox/$PROJECT_NAME && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" && \
 	tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local/ --strip-components=1 && \
 	rm "node-v$NODE_VERSION-linux-x64.tar.xz" && \
+	npm install -g express nodemon && \
     echo "daemon off;" >> /etc/nginx/nginx.conf &&\
+	echo "echo starting_service; service isc-dhcp-server start; service nginx start; service tftpd-hpa start; while true; do sleep 2; done" > /start.sh && \
+	chmod 755 /start.sh &&\
 	echo "Done" 
 
-EXPOSE 3000
+#EXPOSE 3000
 
-CMD service nginx start
+CMD /start.sh
