@@ -1,6 +1,6 @@
+FROM ubuntu
 MAINTAINER taraval
 
-FROM ubuntu
 ENV NODE_VERSION 6.9.1
 ENV PROJECT_NAME deploy
 
