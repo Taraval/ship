@@ -1,3 +1,9 @@
+# How to build: docker build -t <docker_image_name_here> <docker_file_or_folder>
+# Example:      docker build -t deploy4 deploy
+
+# How to run:   docker run --name <name_here> -p <host_port>:<container_port> -d -t <docker_image_name_here>
+# Example:      docker run --name delete_me -p 81:80 -d -t deploy3
+
 FROM ubuntu
 MAINTAINER taraval
 
@@ -17,6 +23,6 @@ RUN apt-get update && \
     echo "daemon off;" >> /etc/nginx/nginx.conf &&\
 	echo "Done" 
 
-#EXPOSE 8181
+EXPOSE 3000
 
 CMD service nginx start
